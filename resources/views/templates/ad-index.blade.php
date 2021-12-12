@@ -16,12 +16,13 @@
     <!-- navbar -->
     <div class="container-md py-5 z-50 px-8 sm:p-10 bg-gray-800 sticky space-y-5 top-0 text-white">
         <div class="flex justify-between">
-            <a href="{{ route('admin-dashboard') }}" class="text-2xl hover:text-purple-500 transition duration-300">Admin Dashboard</a>
+            <a href="{{ route('admin-dashboard') }}"
+                class="text-2xl hover:text-purple-500 transition duration-300">Admin Dashboard</a>
             <button onclick="showhide()" class="sm:hidden"><i class="fas fa-list fa-lg my-auto"></i></button>
             <div class="hidden sm:flex sm:flex-row sm:space-x-10 sm:my-auto">
                 <div>
                     <button onclick="shownotif();" class="transform transition duration-300 hover:scale-110">
-                        <i  class="far fa-bell fa-2x mt-1"></i>
+                        <i class="far fa-bell fa-2x mt-1"></i>
                     </button>
                     <div id="notif" class="bg-white absolute hidden rounded-md right-28 w-1/4">
                         <div class="border-b bg-blue-500 rounded-t-md p-3 block text-center text-white">
@@ -71,14 +72,20 @@
                     </div>
                 </div>
                 <div class="flex flex-col group">
-                    <img src="{{ asset('images/user.jpg') }}" class="h-10 gro transition duration-300 cursor-pointer rounded-full" alt="">
-                    <div class="absolute hidden right-8 mt-10 group-hover:flex bg-white text-black w-48 space-y-2 flex-col my-3 px-3 py-3 rounded-md">
-                        <a href="" class="py-2 transition duration-300 hover:bg-blue-400 hover:text-white rounded-md px-2">Profile</a>
+                    <img src="{{ asset('images/user.jpg') }}"
+                        class="h-10 gro transition duration-300 cursor-pointer rounded-full" alt="">
+                    <div
+                        class="absolute hidden right-8 mt-10 group-hover:flex bg-white text-black w-48 space-y-2 flex-col my-3 px-3 py-3 rounded-md">
+                        <a href=""
+                            class="py-2 transition duration-300 hover:bg-blue-400 hover:text-white rounded-md px-2">Profile</a>
                         @if (Auth::user()->role == "admin" OR Auth::user()->role == "mod")
-                        <a href="{{ route('home') }}" class=" py-2 transition duration-300 hover:bg-blue-400 hover:text-white rounded-md px-2">Homepage</a>
+                        <a href="{{ route('home') }}"
+                            class=" py-2 transition duration-300 hover:bg-blue-400 hover:text-white rounded-md px-2">Homepage</a>
                         @endif
                         <hr>
-                        <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout').submit();" class="transition py-2 duration-300 hover:bg-blue-400 hover:text-white rounded-md px-2">Logout</a>
+                        <a href="{{ route('logout') }}"
+                            onclick="event.preventDefault(); document.getElementById('logout').submit();"
+                            class="transition py-2 duration-300 hover:bg-blue-400 hover:text-white rounded-md px-2">Logout</a>
                     </div>
                 </div>
 
@@ -86,9 +93,9 @@
         </div>
         <div class="hidden flex-col sm:hidden space-y-5" id="dropdown">
             @if (Request::url() === 'http://127.0.0.1:8000')
-                <a href="#home" class="transition duration-300 hover:text-purple-500">Home</a>
-                <a href="#produk" class="transition duration-300 hover:text-purple-500">Produk</a>
-                <a href="#hubungi" class="transition duration-300 hover:text-purple-500">Hubungi</a>
+            <a href="#home" class="transition duration-300 hover:text-purple-500">Home</a>
+            <a href="#produk" class="transition duration-300 hover:text-purple-500">Produk</a>
+            <a href="#hubungi" class="transition duration-300 hover:text-purple-500">Hubungi</a>
             @endif
             <a href="{{ route('register') }}" class="transition duration-300 hover:text-purple-500">Register</a>
             <a href="{{ route('login') }}" class="transition duration-300 hover:text-purple-500">Login</a>
@@ -138,6 +145,7 @@
         }
 
     }
+
     function shownotif() {
         let dropdown = document.getElementById('notif');
 
@@ -148,6 +156,11 @@
         }
 
     }
+
+    $("#files").change(function () {
+        filename = this.files[0].name;
+        document.getElementById('text').innerHTML = filename;
+    });
 
 </script>
 

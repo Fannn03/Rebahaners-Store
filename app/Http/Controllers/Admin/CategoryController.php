@@ -8,6 +8,7 @@ use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Storage;
 
 class CategoryController extends Controller
 {
@@ -28,16 +29,24 @@ class CategoryController extends Controller
     public function store(Request $request){
 
         $rules = [
-            'name_category' => 'required|min:4|max:30|string'
-    ];
+            'name_category' => 'required|min:4|max:30|string',
+            'photo' => 'required|max:2000|mimes:jgp,png,jpeg',
+            'description' => 'required|string|max:255'
+        ];
 
         Validator::make($request->all(), $rules)->validate();
 
+        $ext = $request->photo->getClientOriginalExtension();
+
+        $fileName = "category-" . Str::random(10) . "." . $ext;
+
+        $a = Storage::putFileAs('public/images/category', $request->File('photo'), $fileName);
 
         Category::create([
-
             'code_category' => "category-" . Str::random(10),
-            'name_category' => $request->name_category
+            'name_category' => $request->name_category,
+            'photo' => $fileName,
+            'description' => $request->description
         ]);
 
         return redirect()->route('admin-category');

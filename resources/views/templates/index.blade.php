@@ -19,7 +19,7 @@
             <a href="{{ route('index-page') }}" class="text-2xl hover:text-purple-500 transition duration-300">Rebahaners Store</a>
             <button onclick="showhide()" class="sm:hidden"><i class="fas fa-list fa-lg my-auto"></i></button>
             <div class="hidden sm:flex sm:flex-row sm:space-x-5 sm:my-auto">
-                @if (Request::url() === 'http://127.0.0.1:8000')
+                @if (Request::route()->action['as'] === 'index-page')
                 <a href="#home" class="transition duration-300 hover:text-purple-500">Home</a>
                 <a href="#produk" class="transition duration-300 hover:text-purple-500">Produk</a>
                 <a href="#hubungi" class="transition duration-300 hover:text-purple-500">Hubungi</a>
@@ -29,7 +29,7 @@
             </div>
         </div>
         <div class="hidden flex-col sm:hidden space-y-5" id="dropdown">
-            @if (Request::url() === 'http://127.0.0.1:8000')
+            @if (Request::route()->action['as'] === 'index-page')
                 <a href="#home" class="transition duration-300 hover:text-purple-500">Home</a>
                 <a href="#produk" class="transition duration-300 hover:text-purple-500">Produk</a>
                 <a href="#hubungi" class="transition duration-300 hover:text-purple-500">Hubungi</a>
