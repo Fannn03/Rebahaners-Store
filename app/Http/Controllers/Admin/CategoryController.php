@@ -30,7 +30,7 @@ class CategoryController extends Controller
 
         $rules = [
             'name_category' => 'required|min:4|max:30|string',
-            'photo' => 'required|max:2000|mimes:jgp,png,jpeg',
+            'photo' => 'required|max:20000|mimes:jgp,png,jpeg',
             'description' => 'required|string|max:255'
         ];
 
@@ -40,7 +40,7 @@ class CategoryController extends Controller
 
         $fileName = "category-" . Str::random(10) . "." . $ext;
 
-        $a = Storage::putFileAs('public/images/category', $request->File('photo'), $fileName);
+        Storage::putFileAs('public/images/category', $request->File('photo'), $fileName);
 
         Category::create([
             'code_category' => "category-" . Str::random(10),
@@ -70,15 +70,38 @@ class CategoryController extends Controller
     public function update(Request $request, $code){
 
         $rules = [
-            'name_category' => 'required|min:5|max:30|string'
+            'name_category' => 'required|min:5|max:30|string',
+            'photo' => 'max:20000|mimes:jgp,png,jpeg',
+            'description' => 'required|string|max:255'
         ];
 
         Validator::make($request->all(), $rules)->validate();
 
         $ct = Category::where('code_category', $code)->first();
 
+        if ($request->photo != NULL) {
+
+            $ext = $request->photo->getClientOriginalExtension();
+
+            $fileName = "category-" . Str::random(10) . "." . $ext;
+
+            if (Storage::disk('public')->exists('images/category/' . $ct->photo)) {
+
+                Storage::disk('public')->delete('images/category/' . $ct->photo);
+                Storage::putFileAs('public/images/category', $request->File('photo'), $fileName);
+
+            }
+            
+        }else{
+
+            $fileName = $ct->photo;
+            
+        }
+
         $ct->code_category = $ct->code_category;
         $ct->name_category = $request->name_category;
+        $ct->photo = $fileName;
+        $ct->description = $request->description;
 
         $ct->save();
 
