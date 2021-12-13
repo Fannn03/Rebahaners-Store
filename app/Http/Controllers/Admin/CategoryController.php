@@ -45,6 +45,7 @@ class CategoryController extends Controller
         Category::create([
             'code_category' => "category-" . Str::random(10),
             'name_category' => $request->name_category,
+            'slug' => Str::slug($request->name_category),
             'photo' => $fileName,
             'description' => $request->description
         ]);
@@ -53,7 +54,7 @@ class CategoryController extends Controller
 
     }
     
-    public function editView(Request $request, $code){
+    public function editView($code){
         
         $data = [
             'category' => Category::where('code_category', $code)->first(),
@@ -100,6 +101,7 @@ class CategoryController extends Controller
 
         $ct->code_category = $ct->code_category;
         $ct->name_category = $request->name_category;
+        $ct->slug = $ct->slug;
         $ct->photo = $fileName;
         $ct->description = $request->description;
 
