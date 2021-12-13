@@ -8,10 +8,10 @@
         <hr class="my-5">
         <div class="flex my-5 flex-row flex-wrap gap-4 justify-center">
             @foreach ($category as $ct)
-                <div class="flex w-1/4 flex-col space-y-3 bg-local transform transition duration-300 hover:scale-110 cursor-pointer rounded-md p-3 bg-cover"  style="background-image: linear-gradient(rgba(22, 20, 21, 0.8), rgba(22, 20, 21, 0.8)), url({{ asset('storage/images/category/'. $ct->photo) }})">
+                <a href="{{ url('/category/' . $ct->slug) }}" class="flex flex-wrap flex-col w-1/4 space-y-3 bg-local transform transition duration-300 hover:scale-110 rounded-md p-3 bg-cover" style="background-image: linear-gradient(rgba(22, 20, 21, 0.8), rgba(22, 20, 21, 0.8)), url({{ asset('storage/images/category/'. $ct->photo) }})">
                     <p>{{ $ct->name_category }}</p>
                     <p class="text-gray-400 text-sm">{{ $ct->description }}</p>
-                </div>
+                </a>
             @endforeach
         </div>
     </div>
