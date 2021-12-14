@@ -14,6 +14,7 @@ class Category extends Model
         'code_category',
         'slug',
         'photo',
+        'status',
         'description'
     ];
 

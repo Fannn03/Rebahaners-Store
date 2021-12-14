@@ -19,6 +19,7 @@ class CreateCategoriesTable extends Migration
             $table->string('name_category');
             $table->string('slug');
             $table->string('photo');
+            $table->boolean('status');
             $table->longText('description');
             $table->timestamps();
         });
