@@ -47,6 +47,7 @@ class CategoryController extends Controller
             'name_category' => $request->name_category,
             'slug' => Str::slug($request->name_category),
             'photo' => $fileName,
+            'status' => 1,
             'description' => $request->description
         ]);
 
@@ -103,6 +104,7 @@ class CategoryController extends Controller
         $ct->name_category = $request->name_category;
         $ct->slug = $ct->slug;
         $ct->photo = $fileName;
+        $ct->status = $ct->status;
         $ct->description = $request->description;
 
         $ct->save();
