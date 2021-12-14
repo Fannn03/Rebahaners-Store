@@ -115,6 +115,8 @@ class CategoryController extends Controller
 
         $data = Category::where('code_category', $code)->first();
 
+        Storage::disk('public')->delete('images/category/' . $data->photo);
+
         if ($data == NULL) {
             return redirect()->route('admin-category');
         }
