@@ -6,6 +6,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\IndexAdminController;
 use App\Http\Controllers\Admin\ProductController;
+use App\Http\Controllers\UserProductController;
 
 /*
 |--------------------------------------------------------------------------
@@ -68,3 +69,8 @@ Route::middleware(['auth', 'admin'])->group(function () {
     });
 });
 
+Route::middleware('auth')->group(function(){
+
+    Route::get('/category/{slug}', [UserProductController::class, 'index']);
+
+});
