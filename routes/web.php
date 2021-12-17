@@ -8,6 +8,8 @@ use App\Http\Controllers\Admin\IndexAdminController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\UserProductController;
 
+use Illuminate\Foundation\Auth\EmailVerificationRequest;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -30,7 +32,7 @@ Route::middleware('guest')->group(function () {
     Route::post('/login', [AuthController::class, 'login'])->name('login');
 });
 
-Route::middleware(['auth'])->group(function () {
+Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/home', [HomeController::class, 'home'])->name('home');
 
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
