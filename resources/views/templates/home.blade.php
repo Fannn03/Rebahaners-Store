@@ -19,7 +19,7 @@
             <a href="{{ route('index-page') }}" class="text-2xl hover:text-purple-500 transition duration-300">Rebahaners Store</a>
             <button onclick="showhide()" class="sm:hidden"><i class="fas fa-list fa-lg my-auto"></i></button>
             <div class="hidden sm:flex sm:flex-row sm:space-x-5 sm:my-auto">
-                <a href="" class="my-auto">Home</a>
+                <a href="{{ route('home') }}" class="my-auto">Home</a>
                 <a href="" class="my-auto">Product</a>
                 <div class="flex flex-col group">
                     <img src="{{ asset('images/user.jpg') }}" class="h-10 gro transition duration-300 cursor-pointer rounded-full" alt="">

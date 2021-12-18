@@ -14,7 +14,8 @@ class UserProductController extends Controller
         $product = Product::where('category_id', $category->id)->get();
 
         $data = [
-            'product' => $product
+            'product' => $product,
+            'category' => $category
         ];
 
         return view('user.product-list')->with($data);
